@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+        }
+
+        .container {
+            height: 100%;
+            background-image: linear-gradient(to right, #fbc2eb, #a6c1ee);
+        }
+
+        .login-wrapper {
+            background-color: #fff;
+            width: 358px;
+            height: 588px;
+            border-radius: 15px;
+            padding: 0 50px;
+            position: relative;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .header {
+            font-size: 38px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 200px;
+            font-family: 楷体;
+            color: #ac269c8f;
+        }
+
+        .input-item {
+            display: block;
+            width: 100%;
+            margin-bottom: 20px;
+            border: 0;
+            padding: 10px;
+            border-bottom: 1px solid rgb(128, 125, 125);
+            font-size: 15px;
+            outline: none;
+            font-family: 楷体;
+        }
+
+        .input-item:placeholder {
+            text-transform: uppercase;
+        }
+
+        .btn {
+            text-align: center;
+            font-size: 20px;
+            padding: 10px;
+            width: 100%;
+            margin-top: 25px;
+            background-image: linear-gradient(to right, #a6c1ee, #fbc2eb);
+            color: #fff;
+            font-family: 楷体;
+            border-radius: 15px;
+            border: none;
+        }
+
+        .msg {
+            text-align: center;
+            font-size: 16px;
+            line-height: 20px;
+            font-family: 楷体;
+        }
+
+        .btn1 {
+            text-align: center;
+            font-size: 16px;
+            padding: 10px;
+            width: 80%;
+            margin-top: 20px;
+            background-image: linear-gradient(to right, #a6c1ee, #fbc2eb);
+            color: #fff;
+            border: none;
+            opacity: 0.7;
+            border-radius: 15px;
+            font-family: 楷体;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="login-wrapper">
+            <div class="header">璇宝！嫁给我！</div>
+            <form name="f" action="">
+                <div class="form-wrapper">
+                    <input type="text" name="username" placeholder="我会对这个女孩" class="input-item" id="uName" />
+                    <input type="password" name="password" placeholder="大声说" class="input-item" id="uPass" />
+                    <div>
+                        <input type="button" value="好耶！" class="btn" onclick="ulogin()">
+                    </div>
+                </div>
+                <div class="msg">
+                    </br>感谢上天能够给我一个这样的机会，我会对这个女孩子说三个字：我爱你。如果非要给这份爱加上一个期限，我希望是，一万年。”
+                </div>
+                <div class="msg">
+                    <input type="button" value="这还猜不出来么，戳我呀！" class="btn1" onclick="alert('李子璇，我爱你一万年')">
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <script language="javascript" type="text/javascript">
+        //密码判断跳转函数//
+        function ulogin() {
+
+            var userName = document.getElementById("uName").value;
+            var userPass = document.getElementById("uPass").value;
+
+            if (userPass == "woainiyiwannian" && userName == "李子璇") {
+                window.document.f.action = "biaobaijiemian.html";
+                window.document.f.submit();
+            }
+            else if (userName == "" || userName == null) {
+                alert("姓名不能为空");
+                return false;
+            }
+            else if (userPass == "" || userPass == null) {
+                alert("密码不能为空");
+                return false;
+            }
+            else if (userPass != "woainiyiwannian" || userName != "李子璇") {
+                alert("姓名或密码错误");
+                return false;
+            }
+            else {
+                return true;
+            }
+
+        }
+        //alert样式重写//
+        window.alert = alert;
+        function alert(data, callback) { //回调函数
+            var alert_bg = document.createElement('div');
+            alert_box = document.createElement('div'),
+                alert_text = document.createElement('div'),
+                alert_btn = document.createElement('div'),
+                textNode = document.createTextNode(data ? data : ''),
+                btnText = document.createTextNode('确 定');
+
+            // 控制样式
+            css(alert_bg, {//背景颜色设置
+                'position': 'fixed',
+                'top': '0',
+                'left': '0',
+                'right': '0',
+                'bottom': '0',
+                'background-color': 'rgba(0, 0, 0, 0.1)',
+                'z-index': '999999999'
+            });
+
+            css(alert_box, {//控制盒子大小、背景颜色上下边距
+                'width': '270px',
+                'max-width': '90%',
+                'font-size': '16px',
+                'text-align': 'center',
+                'background-color': '#FFF',
+                'border-radius': '15px',
+                'position': 'absolute',
+                'top': '50%',
+                'left': '50%',
+                'transform': 'translate(-50%, -50%)'
+            });
+
+            css(alert_text, {
+                'padding': '10px 15px',
+                'border-bottom': '1px solid #ddd',
+                'color': '#fbc2eb',
+            });
+
+            css(alert_btn, {
+                'padding': '10px 0',
+                'color': '#fbc2eb',
+                'font-weight': '600',
+                'cursor': 'pointer'
+            });
+
+            // 内部结构套入
+            alert_text.appendChild(textNode);
+            alert_btn.appendChild(btnText);
+            alert_box.appendChild(alert_text);
+            alert_box.appendChild(alert_btn);
+            alert_bg.appendChild(alert_box);
+
+            // 总体显示到页面内
+            document.getElementsByTagName('body')[0].appendChild(alert_bg);
+
+            // 肯定绑定点击事件删除标签
+            alert_btn.onclick = function () {
+                alert_bg.parentNode.removeChild(alert_bg);
+                if (typeof callback === 'function') {
+                    callback(); //回调
+                }
+            }
+        }
+
+        function css(targetObj, cssObj) {
+            var str = targetObj.getAttribute("style") ? targetObj.getAttribute('style') : '';
+            for (var i in cssObj) {
+                str += i + ':' + cssObj[i] + ';';
+            }
+            targetObj.style.cssText = str;
+        }
+
+    </script>
+</body>
+
+</html>
