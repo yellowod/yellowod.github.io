@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="”viewport”" content="”width"="device-width," initial-scale="1″" />
+    <title>你好呀！爱生气的璇宝</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100%;
+            background-color: #eee;
+            font-family: 宋体;
+            font-size: 90%;
+        }
+
+        .container {
+            height: 100%;
+            background-image: linear-gradient(to right, #fbc2eb, #a6c1ee);
+        }
+
+        html {
+            height: 100%;
+        }
+
+        .border1 {
+            border-width: 0px 5px 5px 5px;
+            border-color: #fff;
+            border-style: solid;
+        }
+
+        .ziti1 {
+            font-family: 华文行楷;
+            color: #ffffff;
+            font-size: 20px;
+        }
+
+        .teshukuangxian {
+            border: 1px solid rgb(146, 243, 9);
+        }
+
+        /*横向排列flex*/
+        .flex {
+            display: flex;
+        }
+
+        /*竖向排列flex*/
+        .flex1 {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /*主轴居中*/
+        .juzhong {
+            justify-content: center;
+        }
+
+        /*交叉轴居中*/
+        .juzhong1 {
+            align-items: center;
+        }
+
+        /*盒子内字体居中*/
+        .zitijuzhong {
+            text-align: center;
+        }
+
+        .white {
+            background-color: white;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        /*---横向滚转相册部分---*/
+        .carousel {
+            display: flex;
+            overflow-x: hidden;
+            /* 启用水平滚动 */
+            scroll-snap-type: x mandatory;
+            /* 启用水平滚动条的自动滚动 */
+            scroll-behavior: smooth;
+            /* 平滑滚动效果 */
+        }
+
+        .carousel-item {
+            flex: 0 0 auto;
+            width: 200px;
+            /* 设置每个图片的宽度 */
+            scroll-snap-align: start;
+            /* 当在滚动容器中时，设置图片如何对齐 */
+            border: 2px solid #fff;
+            background-color: #fff;
+        }
+
+        .carousel img {
+            width: 100%;
+            /* 图片宽度自适应容器 */
+            height: auto;
+            /* 图片高度自动调整以保持原始纵横比 */
+        }
+
+        /*--视频部分---*/
+        .video-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /*--按钮部分---*/
+        .btnbox {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            transform-style: preserve-3d;
+            transform: perspective(800px);
+        }
+
+        a {
+            position: relative;
+            display: inline-block;
+            padding: 1.2em 2em;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            color: white;
+        }
+
+        a::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+            border-radius: 4px;
+            transition: box-shadow 0.5s ease, transform 0.2s ease;
+            will-change: transform;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transform: translateY(var(--ty, 0)) rotateX(var(--rx, 0)) rotateY(var(--ry, 0)) translateZ(var(--tz, -12px));
+        }
+
+        a:hover::before {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        a::after {
+            position: relative;
+            display: inline-block;
+            content: attr(data-title);
+            transition: transform 0.2s ease;
+            font-weight: bold;
+            letter-spacing: 0.01em;
+            will-change: transform;
+            transform: translateY(var(--ty, 0)) rotateX(var(--rx, 0)) rotateY(var(--ry, 0));
+        }
+    </style>
+</head>
+
+<body class="flex1 container">
+    <!--二级简介前区-->
+    <div id="yiqu" style="height: 50%; border: 5px solid #fff" class="flex juzhong ziti1">
+        <div style="width: 70%" class="flex1">
+            <!--三级文字区-->
+            <div style="height: 15%" class="zitijuzhong">
+                ❤Because of love❤<br />陪伴是最长情的告白
+            </div>
+            <div style="height: 25%; font-size: 120%" class="zitijuzhong">
+                <br />HS&LZX<br />嫁给我吧!!!
+            </div>
+
+            <!--三级计时器区-->
+            <div style="height: 60%" class="flex1 juzhong1">
+                <!--四级相识-->
+                <div style="height: 30%; font-size: 130%" class="zitijuzhong">
+                    <br />相识
+                </div>
+                <!--四级相识计时-->
+                <div id="xiangshi" style="height: 35%; width: 270px; font-size: 130%" class="flex zitijuzhong">
+                    <div style="width: 25%">
+                        <div id="xiangshid"></div>
+                        <div style="font-size: 90%">Days</div>
+                    </div>
+                    <div style="width: 25%">
+                        <div id="xiangshih"></div>
+                        <div style="font-size: 90%">Hours</div>
+                    </div>
+                    <div style="width: 25%">
+                        <div id="xiangshim"></div>
+                        <div style="font-size: 90%">Minutes</div>
+                    </div>
+                    <div style="width: 25%">
+                        <div id="xiangshis"></div>
+                        <div style="font-size: 90%">Seconds</div>
+                    </div>
+                </div>
+                <!--四级相爱-->
+                <div style="height: 15%; font-size: 140%" class="zitijuzhong">
+                    相爱
+                </div>
+                <!--四级相爱计时-->
+                <div id="xiangai" style="height: 20%; font-size: 140%" class="zitijuzhong"></div>
+            </div>
+        </div>
+    </div>
+
+    <!--二级旋转相册区-->
+    <div style="height: 50%" class="border1 carousel">
+        <div class="carousel-item">
+            <img src="1.jpg" alt="Image 1" />
+        </div>
+        <div class="carousel-item">
+            <img src="2.jpg" alt="Image 2" />
+        </div>
+        <div class="carousel-item">
+            <img src="3.jpg" alt="Image 3" />
+        </div>
+        <div class="carousel-item">
+            <img src="4.jpg" alt="Image 4" />
+        </div>
+        <div class="carousel-item">
+            <img src="5.jpg" alt="Image 5" />
+        </div>
+        <div class="carousel-item">
+            <img src="6.jpg" alt="Image 6" />
+        </div>
+    </div>
+
+    <!--二级视频播放区-->
+    <div style="height: 70%" class="border1 video-container">
+        <video height="100%" autoplay loop controls>
+            <source src="biaobai1.mp4" type="video/mp4" />
+        </video>
+    </div>
+
+    <!--二级事件记录(即按钮)跳转区-->
+    <div style="height: 30%" class="border1 btnbox">
+        <a href="denglujiemian.html" data-title="SURPRISE!"></a>
+    </div>
+
+    <script>
+        //***时间差函数区***//
+        //相识缩写xs，相爱缩写xa
+        const xsd = document.getElementById("xiangshid");
+        const xsh = document.getElementById("xiangshih");
+        const xsm = document.getElementById("xiangshim");
+        const xss = document.getElementById("xiangshis");
+        const xa = document.getElementById("xiangai");
+        //计算时间差函数
+        function calculateTimeDifference(startTime) {
+            const startDate = new Date(startTime); // 将时间字符串转换为日期对象
+            const endDate = new Date();
+            const saveTime = new Array(); //存储日期
+            const timeDiff = endDate.getTime() - startDate.getTime(); // 计算时间差（毫秒）
+            // 转换为天、小时、分钟和秒（利用取余数直接获得，不采用逐级作差获得）
+            const milliseconds = Math.floor((timeDiff % 1000) / 100); //计算毫秒
+            saveTime[3] = Math.floor((timeDiff / 1000) % 60); //计算秒
+            saveTime[2] = Math.floor((timeDiff / 1000 / 60) % 60); //计算分钟
+            saveTime[1] = Math.floor((timeDiff / (1000 * 60 * 60)) % 24); //计算小时
+            saveTime[0] = Math.floor(timeDiff / (1000 * 60 * 60 * 24)); //计算天
+            return saveTime; // 返回时间差
+        }
+        const acquaintanceTime = "4/30/2019 00:00:00"; //相识日期
+        const loveTime = "6/30/2019 05:20:01"; //相爱日期
+        setInterval(
+            "xsd.innerHTML=calculateTimeDifference(acquaintanceTime)[0];",
+            1000
+        );
+        setInterval(
+            "xsh.innerHTML=calculateTimeDifference(acquaintanceTime)[1];",
+            1000
+        );
+        setInterval(
+            "xsm.innerHTML=calculateTimeDifference(acquaintanceTime)[2];",
+            1000
+        );
+        setInterval(
+            "xss.innerHTML=calculateTimeDifference(acquaintanceTime)[3];",
+            1000
+        );
+        //输出相爱完整时间函数
+        function xiangaistring() {
+            const xastring =
+                calculateTimeDifference(loveTime)[0] +
+                "天" +
+                calculateTimeDifference(loveTime)[1] +
+                "：" +
+                calculateTimeDifference(loveTime)[2] +
+                "：" +
+                calculateTimeDifference(loveTime)[3];
+            return xastring;
+        }
+        setInterval("xa.innerHTML=xiangaistring();", 1000);
+
+        //***横向滚动相册区***//
+        const carousel = document.querySelector(".carousel");
+        let currentIndex = 0; // 当前显示的图片索引
+        let items = carousel.querySelectorAll(".carousel-item"); // 所有图片的集合
+        let totalItems = items.length; // 总图片数
+        let scrollAmount = items[1].offsetLeft - items[0].offsetLeft; // 单次滚动的距离（下一个图片距离当前图片的距离）
+        setInterval(() => {
+            // 每秒自动滚动一次的定时器
+            currentIndex = (currentIndex + 1) % totalItems; // 更新当前索引，如果超出总图片数则从头开始循环
+            carousel.scrollTo({ left: currentIndex * scrollAmount }); // 平滑滚动到新的索引位置
+        }, 1000); // 每秒执行一次，你可以根据需要调整这个时间间隔。例如，如果你想每5秒滚动一次，这里应该设置为5000。
+
+        //***视频区***//
+
+        //***按钮区***//
+        const docStyle = document.documentElement.style;
+        const aElem = document.querySelector("a");
+        const boundingClientRect = aElem.getBoundingClientRect();
+
+        aElem.onmousemove = function (e) {
+            const x = e.clientX - boundingClientRect.left;
+            const y = e.clientY - boundingClientRect.top;
+
+            const xc = boundingClientRect.width / 2;
+            const yc = boundingClientRect.height / 2;
+
+            const dx = x - xc;
+            const dy = y - yc;
+
+            docStyle.setProperty("--rx", `${dy / -1}deg`);
+            docStyle.setProperty("--ry", `${dx / 10}deg`);
+        };
+
+        aElem.onmouseleave = function (e) {
+            docStyle.setProperty("--ty", "0");
+            docStyle.setProperty("--rx", "0");
+            docStyle.setProperty("--ry", "0");
+        };
+
+        aElem.onmousedown = function (e) {
+            docStyle.setProperty("--tz", "-25px");
+        };
+
+        document.body.onmouseup = function (e) {
+            docStyle.setProperty("--tz", "-12px");
+        };
+    </script>
+</body>
+
+</html>
